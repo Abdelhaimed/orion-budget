@@ -1,0 +1,9 @@
+{
+  "name": "Orion Life",
+  "short_name": "Orion Life",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f6f8",
+  "theme_color": "#102c37",
+  "description": "Private personal dashboard for finance, fitness, shopping and tasks."
+}

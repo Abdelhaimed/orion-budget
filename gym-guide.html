@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>Gym Guide — 4 Day Plan</title>
+<style>
+:root{--bg:#0b1220;--panel:#121d30;--panel2:#18263c;--text:#f3f6fb;--muted:#a8b5c8;--line:#2a3a52;--accent:#79e0bd;--hot:#ff6f75;--blue:#8db7ff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1220,#101b2d 55%,#0b1220);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:28px 18px 18px;max-width:1100px;margin:auto}h1{font-size:clamp(28px,6vw,42px);line-height:1.08;margin:0 0 10px}h2{font-size:22px;margin:0 0 12px}h3{font-size:18px;margin:0 0 8px}.sub{color:var(--muted);max-width:720px}
+main{max-width:1100px;margin:auto;padding:0 16px 60px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.toolbar input,.toolbar select{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:12px;font:inherit;min-width:0}.toolbar input{flex:1;min-width:180px}
+.tabs{display:flex;gap:8px;overflow:auto;padding:4px 0 12px}.tab,button,.linkbtn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:12px;font:inherit;text-decoration:none;cursor:pointer;white-space:nowrap}.tab.active{background:var(--accent);color:#092018;border-color:var(--accent);font-weight:700}
+.notice{background:#132a2b;border:1px solid #28564d;border-radius:14px;padding:14px;color:#d7f6eb;margin:14px 0 20px}.dayhead{display:flex;justify-content:space-between;gap:12px;align-items:end;margin:18px 0 12px}.muted{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px;min-width:0}.cardtop{display:flex;justify-content:space-between;gap:10px;align-items:start}.tag{font-size:12px;color:#b8d1ff;background:#1c3150;padding:4px 8px;border-radius:99px;white-space:nowrap}
+.anatomy{display:flex;gap:12px;align-items:center;background:#0e1929;border:1px solid #22334a;border-radius:14px;padding:10px;margin:12px 0}.anatomy svg{width:104px;height:136px;flex:none}.anatomy p{font-size:13px;color:var(--muted);margin:0}.anatomy b{color:var(--text)}
+figure{margin:0}.bodyshape{fill:#34445a;stroke:#8192a8;stroke-width:1.5}.muscle{fill:#536780;stroke:#8fa2bb;stroke-width:1}.muscle.on{fill:var(--hot);stroke:#ffc0c2}
+ul{padding-left:20px;margin:8px 0;color:#d8e1ed}li{margin:4px 0}.prescription{color:var(--accent);font-weight:700;font-size:14px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions a{font-size:14px}.howto{background:var(--panel);border:1px solid var(--line);padding:18px;border-radius:18px;margin-top:24px}.howto ol{padding-left:22px}.howto a{color:var(--accent)}.footer{color:var(--muted);font-size:13px;margin-top:22px}
+.hidden{display:none!important}
+@media(min-width:760px){header{padding-top:40px}.anatomy svg{width:112px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Your 4-Day Gym Guide</h1>
+  <p class="sub">Browse each movement, see the main muscles being trained, read form cues, and open a demonstration video. Start light and build control before adding weight.</p>
+</header>
+<main>
+  <div class="notice"><b>Weekly plan:</b> Monday — Upper A · Tuesday — Lower A · Thursday — Upper B · Saturday — Lower B. Rest or take an easy walk on the other days. Keep 2–3 good reps in reserve; stop if you feel pain.</div>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search an exercise or muscle…" aria-label="Search exercises">
+    <select id="muscle" aria-label="Filter by muscle">
+      <option value="all">All muscle groups</option><option>Chest</option><option>Back</option><option>Shoulders</option><option>Arms</option><option>Quads</option><option>Glutes</option><option>Hamstrings</option><option>Core</option><option>Calves</option>
+    </select>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Workout days">
+    <button class="tab active" data-day="all">All days</button>
+    <button class="tab" data-day="Monday">Monday · Upper A</button>
+    <button class="tab" data-day="Tuesday">Tuesday · Lower A</button>
+    <button class="tab" data-day="Thursday">Thursday · Upper B</button>
+    <button class="tab" data-day="Saturday">Saturday · Lower B</button>
+  </nav>
+  <div class="dayhead"><div><h2 id="listTitle">All exercises</h2><div class="muted" id="count"></div></div><div class="muted">Sets × reps</div></div>
+  <section class="grid" id="cards"></section>
+  <section class="howto">
+    <h2>How to use this guide</h2>
+    <ol>
+      <li>Choose a workout day from the tabs, or search by exercise or muscle.</li>
+      <li>Look at the red areas in the small body drawing. They show the main muscles used, not every muscle involved.</li>
+      <li>Read the form cues, then tap <b>Watch video</b> for a demonstration.</li>
+      <li>Begin with a light load. Move slowly, keep the motion controlled, and ask gym staff to check your form if unsure.</li>
+      <li>When every set reaches the top of its rep range with clean form, raise the load by a small amount next time.</li>
+    </ol>
+    <p class="muted">The body drawings are simple learning diagrams, not medical or exact anatomical images. Muscle use varies with grip, setup, and body position.</p>
+    <p><b>Video libraries:</b> <a href="https://www.qmsu.org/qmotion/guides/" target="_blank" rel="noopener">QMotion exercise video guides</a> · <a href="https://fitstra.com/beginner-program/" target="_blank" rel="noopener">Fitstra form video library</a></p>
+  </section>
+  <p class="footer">Warm up for 5–8 minutes. Rest about 2–3 minutes after big lifts and 60–90 seconds after smaller movements. Treadmill: 15–20 minutes at a pace where you can still talk.</p>
+</main>
+<script>
+const exercises = [
+{day:"Monday",dayName:"Upper A",name:"Chest press machine",sets:"3 × 10–12",muscles:["Chest","Arms"],target:"chest",video:"https://www.youtube.com/results?search_query=chest+press+machine+proper+form",tips:["Set the seat so the handles line up around mid-chest.","Keep shoulder blades gently back against the pad.","Press without locking the elbows; return slowly."],mistake:"Do not let the shoulders roll forward or bounce the weight."},
+{day:"Monday",dayName:"Upper A",name:"Lat pulldown",sets:"3 × 10–12",muscles:["Back","Arms"],target:"back",video:"https://www.youtube.com/results?search_query=lat+pulldown+proper+form",tips:["Grip a little wider than shoulder width, if comfortable.","Lean back only slightly and pull the bar toward upper chest.","Let arms rise under control; do not swing."],mistake:"Do not pull the bar behind your neck."},
+{day:"Monday",dayName:"Upper A",name:"Seated cable row",sets:"3 × 10–12",muscles:["Back","Arms"],target:"back",video:"https://www.youtube.com/results?search_query=seated+cable+row+proper+form",tips:["Sit tall with knees softly bent.","Pull the handle toward your lower ribs.","Keep torso still and let shoulder blades move naturally."],mistake:"Avoid rocking your torso to move the weight."},
+{day:"Monday",dayName:"Upper A",name:"Incline dumbbell press",sets:"2 × 10",muscles:["Chest","Shoulders","Arms"],target:"chest",video:"https://www.youtube.com/results?search_query=incline+dumbbell+press+proper+form",tips:["Set bench to a low incline, around 20–30 degrees.","Lower dumbbells beside upper chest with wrists stacked.","Press up smoothly without banging the weights together."],mistake:"Avoid an overly steep bench angle or flared elbows."},
+{day:"Monday",dayName:"Upper A",name:"Lateral raise",sets:"2 × 12–15",muscles:["Shoulders"],target:"shoulders",video:"https://www.youtube.com/results?search_query=dumbbell+lateral+raise+proper+form",tips:["Use light dumbbells and a soft bend in elbows.","Raise arms out to the sides to about shoulder height.","Lower slowly; keep neck relaxed."],mistake:"Do not swing your body or shrug hard."},
+{day:"Monday",dayName:"Upper A",name:"Cable triceps pushdown",sets:"2 × 12",muscles:["Arms"],target:"arms",video:"https://www.youtube.com/results?search_query=cable+triceps+pushdown+proper+form",tips:["Keep elbows close to your sides.","Straighten elbows while upper arms stay still.","Return until forearms are just past 90 degrees."],mistake:"Do not lean your whole body onto the cable."},
+{day:"Monday",dayName:"Upper A",name:"Dumbbell curl",sets:"2 × 12",muscles:["Arms"],target:"arms",video:"https://www.youtube.com/results?search_query=dumbbell+bicep+curl+proper+form",tips:["Stand tall with elbows near your ribs.","Curl without moving upper arms forward.","Lower slowly to the start."],mistake:"Avoid swinging hips or leaning back."},
+{day:"Tuesday",dayName:"Lower A",name:"Leg press",sets:"3 × 12",muscles:["Quads","Glutes"],target:"quads",video:"https://www.youtube.com/results?search_query=leg+press+machine+proper+form",tips:["Place feet about shoulder width on the platform.","Lower only as far as your hips stay against the pad.","Push through the whole foot; keep knees tracking with toes."],mistake:"Do not lock knees or let your lower back curl off the pad."},
+{day:"Tuesday",dayName:"Lower A",name:"Goblet squat",sets:"3 × 10",muscles:["Quads","Glutes","Core"],target:"quads",video:"https://www.youtube.com/results?search_query=goblet+squat+proper+form",tips:["Hold one dumbbell close to your chest.","Sit down between your hips while keeping feet planted.","Stand by pushing the floor away."],mistake:"Do not let heels lift or knees collapse inward."},
+{day:"Tuesday",dayName:"Lower A",name:"Dumbbell Romanian deadlift",sets:"3 × 10",muscles:["Hamstrings","Glutes","Back"],target:"hamstrings",video:"https://www.youtube.com/results?search_query=dumbbell+romanian+deadlift+proper+form",tips:["Hold dumbbells close to the front of your thighs.","Soften knees and push hips backward; keep spine neutral.","Stop when hamstrings feel stretched, then drive hips forward."],mistake:"Do not turn it into a squat or round your back."},
+{day:"Tuesday",dayName:"Lower A",name:"Leg extension",sets:"2 × 12",muscles:["Quads"],target:"quads",video:"https://www.youtube.com/results?search_query=leg+extension+machine+proper+form",tips:["Align the machine pivot with your knee joint.","Extend knees smoothly; pause briefly at the top.","Lower slowly without letting the stack slam."],mistake:"Avoid kicking hard or using momentum."},
+{day:"Tuesday",dayName:"Lower A",name:"Seated leg curl",sets:"2 × 12",muscles:["Hamstrings"],target:"hamstrings",video:"https://www.youtube.com/results?search_query=seated+leg+curl+proper+form",tips:["Set the pad just above your ankles.","Curl heels down and back in a smooth motion.","Return slowly while keeping hips on the seat."],mistake:"Do not lift your hips or rush the return."},
+{day:"Tuesday",dayName:"Lower A",name:"Standing calf raise",sets:"2 × 15",muscles:["Calves"],target:"calves",video:"https://www.youtube.com/results?search_query=standing+calf+raise+proper+form",tips:["Stand with balls of feet on the platform.","Rise high, pause, then lower into a comfortable stretch.","Keep knees soft and move through full range."],mistake:"Avoid bouncing at the bottom."},
+{day:"Tuesday",dayName:"Lower A",name:"Plank",sets:"3 × 30 sec",muscles:["Core"],target:"core",video:"https://www.youtube.com/results?search_query=forearm+plank+proper+form",tips:["Place elbows below shoulders.","Keep a straight line from head to heels.","Brace gently and breathe throughout."],mistake:"Do not let hips sag or rise high."},
+{day:"Thursday",dayName:"Upper B",name:"Incline chest press machine",sets:"3 × 10",muscles:["Chest","Shoulders","Arms"],target:"chest",video:"https://www.youtube.com/results?search_query=incline+chest+press+machine+proper+form",tips:["Adjust seat so handles start near upper chest.","Keep back supported and wrists straight.","Press smoothly and return with control."],mistake:"Do not shrug shoulders toward ears."},
+{day:"Thursday",dayName:"Upper B",name:"Assisted pull-up",sets:"3 × 8–10",muscles:["Back","Arms"],target:"back",video:"https://www.youtube.com/results?search_query=assisted+pull+up+machine+proper+form",tips:["Choose enough assistance to keep reps smooth.","Start with shoulders set down, then pull chest upward.","Lower until arms are long without dropping suddenly."],mistake:"Avoid kicking or craning your neck to reach the bar."},
+{day:"Thursday",dayName:"Upper B",name:"Chest-supported row",sets:"3 × 10",muscles:["Back","Arms"],target:"back",video:"https://www.youtube.com/results?search_query=chest+supported+row+proper+form",tips:["Set chest firmly against the pad.","Pull elbows back toward your hips.","Pause briefly, then lower slowly."],mistake:"Do not lift chest off the pad to finish reps."},
+{day:"Thursday",dayName:"Upper B",name:"Shoulder press machine",sets:"2 × 10",muscles:["Shoulders","Arms"],target:"shoulders",video:"https://www.youtube.com/results?search_query=shoulder+press+machine+proper+form",tips:["Set handles around ear or shoulder height.","Keep ribs down and back supported.","Press overhead in a comfortable path."],mistake:"Do not arch your lower back to push higher."},
+{day:"Thursday",dayName:"Upper B",name:"Face pull",sets:"2 × 12–15",muscles:["Shoulders","Back"],target:"shoulders",video:"https://www.youtube.com/results?search_query=cable+face+pull+proper+form",tips:["Set rope around face height.","Pull rope toward forehead, hands moving apart.","Keep ribs steady and control the return."],mistake:"Do not turn it into a heavy backward lean."},
+{day:"Thursday",dayName:"Upper B",name:"Hammer curl",sets:"2 × 12",muscles:["Arms"],target:"arms",video:"https://www.youtube.com/results?search_query=dumbbell+hammer+curl+proper+form",tips:["Hold dumbbells with palms facing each other.","Keep elbows close to your sides.","Curl and lower without swinging."],mistake:"Avoid moving elbows forward."},
+{day:"Thursday",dayName:"Upper B",name:"Rope triceps extension",sets:"2 × 12",muscles:["Arms"],target:"arms",video:"https://www.youtube.com/results?search_query=overhead+rope+triceps+extension+proper+form",tips:["Use a light load and keep elbows pointing forward.","Extend elbows until arms straighten comfortably.","Return slowly; keep ribs from flaring."],mistake:"Do not force a deep stretch or arch your back."},
+{day:"Saturday",dayName:"Lower B",name:"Hip thrust",sets:"3 × 10–12",muscles:["Glutes","Hamstrings"],target:"glutes",video:"https://www.youtube.com/results?search_query=hip+thrust+proper+form",tips:["Rest upper back against a bench or use the machine.","Keep chin slightly tucked and feet flat.","Drive hips up until torso and thighs align; squeeze glutes."],mistake:"Do not overarch your lower back at the top."},
+{day:"Saturday",dayName:"Lower B",name:"Dumbbell split squat",sets:"2 × 10 each leg",muscles:["Quads","Glutes"],target:"quads",video:"https://www.youtube.com/results?search_query=dumbbell+split+squat+proper+form",tips:["Take a stable split stance, feet hip-width apart.","Lower straight down with front heel planted.","Push through front foot to rise; use support if needed."],mistake:"Avoid balancing on a tightrope line or letting front knee cave in."},
+{day:"Saturday",dayName:"Lower B",name:"Leg press",sets:"3 × 12",muscles:["Quads","Glutes"],target:"quads",video:"https://www.youtube.com/results?search_query=leg+press+machine+proper+form",tips:["Set feet about shoulder width.","Lower under control while hips stay on the pad.","Press through the whole foot."],mistake:"Do not lock knees or round your pelvis off the seat."},
+{day:"Saturday",dayName:"Lower B",name:"Lying leg curl",sets:"3 × 12",muscles:["Hamstrings"],target:"hamstrings",video:"https://www.youtube.com/results?search_query=lying+leg+curl+proper+form",tips:["Align knees with the machine pivot.","Curl heels toward your glutes without lifting hips.","Lower slowly."],mistake:"Do not jerk the weight or lift your hips."},
+{day:"Saturday",dayName:"Lower B",name:"Leg extension",sets:"2 × 12",muscles:["Quads"],target:"quads",video:"https://www.youtube.com/results?search_query=leg+extension+machine+proper+form",tips:["Align machine pivot with knee.","Extend smoothly and pause briefly.","Lower slowly."],mistake:"Do not kick the weight up."},
+{day:"Saturday",dayName:"Lower B",name:"Calf raise",sets:"2 × 15",muscles:["Calves"],target:"calves",video:"https://www.youtube.com/results?search_query=calf+raise+proper+form",tips:["Use a stable machine or bodyweight setup.","Rise onto the balls of your feet.","Pause, then lower with control."],mistake:"Avoid bouncing."},
+{day:"Saturday",dayName:"Lower B",name:"Cable crunch",sets:"3 × 12",muscles:["Core"],target:"core",video:"https://www.youtube.com/results?search_query=cable+crunch+proper+form",tips:["Kneel facing the cable with rope by your temples.","Curl ribs toward pelvis; hips stay mostly still.","Return slowly without pulling with your arms."],mistake:"Do not hinge only at the hips."},
+{day:"Saturday",dayName:"Lower B",name:"Dead bug",sets:"2 × 10 each side",muscles:["Core"],target:"core",video:"https://www.youtube.com/results?search_query=dead+bug+exercise+proper+form",tips:["Lie on your back with arms up and knees bent.","Brace gently; lower opposite arm and leg slowly.","Keep lower back gently against the floor; alternate."],mistake:"Shorten the movement if your back arches."}
+];
+function anatomy(target){
+ const map={chest:["chest"],back:["back"],shoulders:["shoulders"],arms:["arms"],quads:["quads"],glutes:["glutes"],hamstrings:["hamstrings"],core:["core"],calves:["calves"]};
+ const active=map[target]||[];
+ const part=(name,d)=>`<path class="muscle ${active.includes(name)?'on':''}" d="${d}"/>`;
+ return `<svg viewBox="0 0 120 160" role="img" aria-label="${target} muscle diagram">
+ <circle class="bodyshape" cx="60" cy="15" r="10"/>
+ <path class="bodyshape" d="M48 28 Q60 23 72 28 L78 66 Q75 77 70 82 L69 111 L51 111 L50 82 Q45 77 42 66Z"/>
+ <path class="bodyshape" d="M45 33 Q35 35 31 49 L20 82 Q18 88 23 90 Q28 91 31 84 L45 59Z M75 33 Q85 35 89 49 L100 82 Q102 88 97 90 Q92 91 89 84 L75 59Z"/>
+ <path class="bodyshape" d="M51 108 L69 108 L72 144 Q72 151 66 151 L61 116 L55 151 Q48 152 48 144Z"/>
+ ${part("chest","M45 37 Q60 31 75 37 L72 51 Q60 56 48 51Z")}
+ ${part("back","M49 31 L71 31 L73 62 L60 69 L47 62Z")}
+ ${part("shoulders","M42 31 Q48 27 52 33 L49 45 L40 43Z M68 33 Q72 27 78 31 L80 43 L71 45Z")}
+ ${part("arms","M31 48 L39 45 L31 82 L25 84Z M81 45 L89 48 L95 84 L89 82Z")}
+ ${part("quads","M49 82 L59 84 L57 112 L49 112Z M61 84 L71 82 L71 112 L63 112Z")}
+ ${part("glutes","M49 66 Q60 62 71 66 L69 81 L51 81Z")}
+ ${part("hamstrings","M49 82 L58 83 L56 112 L49 112Z M62 83 L71 82 L71 112 L64 112Z")}
+ ${part("core","M51 52 L69 52 L68 79 L52 79Z")}
+ ${part("calves","M50 115 L58 115 L55 145 L49 145Z M62 115 L70 115 L71 145 L65 145Z")}
+ <text x="60" y="159" fill="#a8b5c8" font-size="6" text-anchor="middle">TARGET MUSCLES</text></svg>`;
+}
+window.GYM_EXERCISES=exercises;const cards=document.getElementById('cards'),search=document.getElementById('search'),muscle=document.getElementById('muscle'),count=document.getElementById('count'),title=document.getElementById('listTitle');
+let activeDay='all';
+function render(){
+ const q=search.value.trim().toLowerCase(),m=muscle.value;
+ const shown=exercises.filter(e=>(activeDay==='all'||e.day===activeDay)&&(!q||(e.name+' '+e.muscles.join(' ')+' '+e.tips.join(' ')).toLowerCase().includes(q))&&(m==='all'||e.muscles.includes(m)));
+ title.textContent=activeDay==='all'?'All exercises':({Monday:'Monday · Upper A',Tuesday:'Tuesday · Lower A',Thursday:'Thursday · Upper B',Saturday:'Saturday · Lower B'}[activeDay]);
+ count.textContent=shown.length+' movement'+(shown.length===1?'':'s')+' shown';
+ cards.innerHTML=shown.map(e=>`<article class="card">
+ <div class="cardtop"><div><h3>${e.name}</h3><div class="muted">${e.day} · ${e.dayName}</div></div><span class="tag">${e.sets}</span></div>
+ <div class="anatomy">${anatomy(e.target)}<p><b>Main muscles</b><br>${e.muscles.join(' · ')}<br><br>Red areas mark the main working region.</p></div>
+ <div class="prescription">${e.sets}</div><ul>${e.tips.map(t=>'<li>'+t+'</li>').join('')}</ul>
+ <p class="muted"><b>Watch for:</b> ${e.mistake}</p>
+ <div class="actions"><a class="linkbtn" href="${e.video}" target="_blank" rel="noopener">▶ Watch video</a></div>
+ </article>`).join('');
+ if(!shown.length)cards.innerHTML='<p class="muted">No matching exercise. Try another word or muscle group.</p>';
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeDay=b.dataset.day;render()}));
+search.addEventListener('input',render);muscle.addEventListener('change',render);render();
+</script>
+</body></html>
