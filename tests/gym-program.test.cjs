@@ -32,3 +32,13 @@ test('program includes hips, abs and plank exercises',()=>{
 test('old upper/lower labels are removed',()=>{
  assert.doesNotMatch(html,/Upper A|Upper B|Lower A|Lower B/);
 });
+
+test('workout cards provide embedded videos and recovery timers',()=>{
+ const app=fs.readFileSync('orion-life.js','utf8');
+ for(const name of new Set(exercises.map(x=>x.name)))assert.ok(app.includes(`'${name}':`),`${name} has no in-app video mapping`);
+ assert.match(app,/Recover before the next set/);
+ assert.match(app,/Prepare for the next exercise/);
+ assert.match(app,/setDetails/);
+ assert.match(app,/youtube-nocookie\.com\/embed/);
+ assert.match(app,/<video class="workout-video"/);
+});

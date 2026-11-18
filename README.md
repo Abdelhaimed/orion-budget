@@ -17,6 +17,7 @@ The migration deliberately keeps one versioned document. No database migration i
 - Professional CSV reports with filters, Excel BOM, comma/semicolon choice and spreadsheet-formula protection.
 - Separate JSON backup/import.
 - The original four-day gym guide, workout logging, weights and history.
+- Guided workout cards with per-set recovery timers, between-exercise timers and in-app video demonstrations.
 - Multiple shopping lists and one-time conversion of purchases into Finance.
 - Tasks, planner filters and duplicate-safe recurring tasks.
 - Unified dashboard, dark mode, responsive mobile navigation and an installable PWA shell.
@@ -47,3 +48,7 @@ node --test tests\orion-utils.test.cjs
 ## Deployment
 
 GitHub Actions deploys pushes to `main`. In **Settings → Pages**, select **GitHub Actions** as the source.
+
+## Exercise media
+
+Most in-app exercise demonstrations come from the MIT-licensed [Free Exercise DB with Videos](https://github.com/harshvishu/free-exercise-db-with-videos). A small number of movements use privacy-enhanced YouTube embeds when the open dataset has no matching demonstration.
