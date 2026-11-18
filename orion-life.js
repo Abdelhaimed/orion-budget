@@ -44,7 +44,7 @@ function renderDashboard(data,core){
  $('lifeSummary').innerHTML=[['Finance',euro(remaining),'cycle cash remaining'],['Gym',workouts,'workouts this week'],['Shopping',openShop,'items remaining'],['Tasks',dueToday,'due today']].map(([name,value,sub])=>`<div class="stat"><small>${name}</small><strong>${value}</strong><span class="life-meta">${sub}</span></div>`).join('');
 }
 function setupGym(data,core){
- $('startWorkout').onclick=()=>{const day=prompt('Workout day: Monday, Tuesday, Thursday or Saturday','Monday');if(!['Monday','Tuesday','Thursday','Saturday'].includes(day))return;openWorkout(day,data,core)};
+ $('startWorkout').onclick=()=>{const day=prompt('Workout day — Monday: Chest & Triceps; Tuesday: Back & Biceps; Thursday: Legs, Hips & Arms; Saturday: Shoulders, Arms & Core','Monday');if(!['Monday','Tuesday','Thursday','Saturday'].includes(day))return;openWorkout(day,data,core)};
 }
 function gymExercises(){return $('gymGuide')?.contentWindow?.GYM_EXERCISES||[]}
 function openWorkout(day,data,core){
